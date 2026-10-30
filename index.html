@@ -132,6 +132,11 @@ footer { padding:0 0 36px; color:#748093; text-align:center; }
 .wa-status:empty { display:none; }
 footer { padding-bottom:100px; }
 @media(max-width:520px) { .wa-launch { right:16px; bottom:max(16px,env(safe-area-inset-bottom)); padding:14px 18px; } .wa-dialog { right:16px; bottom:84px; max-height:calc(100dvh - 100px); } }
+
+#footerCounterTrigger { display:inline-block; }
+#footerCounterValue { margin-left:12px; color:var(--blue-dark); font-weight:700; font-variant-numeric:tabular-nums; }
+#footerCounterValue[hidden] { display:none !important; }
+@media (max-width:520px) { #footerCounterValue { margin:8px 0 0; display:block; } }
 </style>
 </head>
 <body>
@@ -251,7 +256,7 @@ footer { padding-bottom:100px; }
       </div>
     </section>
   </main>
-  <footer><div class="container">© VILLY · Izvorul Forrás SRL</div></footer>
+  <footer><div class="container"><span id="footerCounterTrigger" tabindex="0">© VILLY · Izvorul Forrás SRL</span><span id="footerCounterValue" hidden="hidden" role="status" aria-live="polite"></span></div></footer>
   <script>
     document.documentElement.setAttribute('data-lang', 'hu');
 
@@ -342,5 +347,61 @@ const WHATSAPP_PHONE = '40722626256';
 setLang(document.documentElement.lang);
 </script><script>
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-</script><script src="/_vercel/insights/script.js" defer></script></body>
+</script><script src="/_vercel/insights/script.js" defer></script><script>
+(function () {
+  const trigger = document.getElementById('footerCounterTrigger');
+  const output = document.getElementById('footerCounterValue');
+  let holding = false;
+  let knownCount = null;
+  let readRequest = null;
+  function ro() { return document.documentElement.lang === 'ro'; }
+  function display() {
+    if (!holding) return;
+    output.textContent = knownCount === null
+      ? (ro() ? ' · Contorul nu este disponibil momentan.' : ' · A számláló most nem elérhető.')
+      : (ro() ? ' · Vizualizări: ' : ' · Oldalmegtekintések: ') + knownCount.toLocaleString(ro() ? 'ro-RO' : 'hu-HU');
+  }
+  async function readCount() {
+    if (readRequest) return readRequest;
+    readRequest = (async function () {
+      try {
+        const response = await fetch('/api/pageviews', { cache: 'no-store', credentials: 'same-origin' });
+        if (!response.ok) throw new Error('Counter unavailable');
+        const data = await response.json();
+        if (!Number.isSafeInteger(data.count) || data.count < 0) throw new Error('Invalid counter response');
+        knownCount = data.count;
+      } catch (_) { knownCount = null; }
+      finally { readRequest = null; display(); }
+    })();
+    return readRequest;
+  }
+  function reveal() {
+    holding = true; output.hidden = false;
+    if (knownCount === null) output.textContent = ro() ? ' · Se încarcă…' : ' · Betöltés…';
+    else display();
+    readCount();
+  }
+  function hide() { holding = false; output.hidden = true; }
+  trigger.addEventListener('mousedown', function (event) {
+    if (event.button === 0 && event.ctrlKey) { event.preventDefault(); reveal(); }
+  });
+  trigger.addEventListener('keydown', function (event) {
+    if (event.ctrlKey && event.key === 'Enter' && !event.repeat) { event.preventDefault(); reveal(); }
+  });
+  document.addEventListener('mouseup', hide);
+  document.addEventListener('keyup', function (event) {
+    if (event.key === 'Control' || event.key === 'Enter' || !event.ctrlKey) hide();
+  });
+  window.addEventListener('blur', hide);
+  document.addEventListener('visibilitychange', function () { if (document.hidden) hide(); });
+  document.querySelectorAll('[data-lang-select]').forEach(function (button) { button.addEventListener('click', display); });
+  // One request for each full page load. No message, name or telephone number is included.
+  if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
+    fetch('/api/pageviews', { method: 'POST', credentials: 'same-origin', keepalive: true })
+      .then(function (response) { if (!response.ok) throw new Error('Counter unavailable'); return response.json(); })
+      .then(function (data) { if (Number.isSafeInteger(data.count) && data.count >= 0) { knownCount = data.count; display(); } })
+      .catch(function () {});
+  }
+})();
+</script></body>
 </html>
