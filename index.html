@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="hu" data-lang="hu">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VILLY – Forrásvíz és üdítőitalok</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Villy üdítőitalok és Budvár Gyöngye szénsavas palackozott víz Fenyédről. Családi vállalkozás 1991 óta. Termékek, gyártás és partneri együttműködés.">
+  <title>VILLY – Üdítőitalok és Budvár Gyöngye szénsavas víz</title>
   <style>
     :root {
       --blue: #1687d9;
@@ -540,7 +541,62 @@
       .menu { display: none; }
       .nav-right { gap: 10px; }
     }
-  </style>
+  
+    section[id] { scroll-margin-top: 100px; }
+    .nav { flex-wrap: wrap; }
+    .menu { gap: 12px 18px; justify-content: flex-end; }
+    .menu a:hover, .menu a:focus-visible { color: var(--blue-dark); }
+    .hero h1 { font-size: clamp(34px, 4.7vw, 56px); line-height: 1.12; }
+    .hero .lead { font-size: 18px; line-height: 1.75; }
+    .hero-note { margin: 20px 0 0; color: var(--blue-dark); line-height: 1.7; font-weight: 700; }
+    .copy { max-width: 860px; font-size: 18px; line-height: 1.8; color: var(--muted); }
+    .copy p { margin: 0 0 18px; }
+    .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .product-grid .card-body { padding: 28px; }
+    .product-grid h3 { line-height: 1.3; color: var(--blue-dark); }
+    .product-grid p + p { margin-top: 16px; }
+    .product-sizes { padding-top: 18px; border-top: 1px solid #d9eaf4; }
+    .story { padding: 32px; border-radius: 28px; background: var(--sky); }
+    .quality { max-width: 920px; }
+    .cooperation { padding: 32px; border-radius: 28px; background: linear-gradient(120deg,#eaf6ff,#effaf3); }
+    .facility .copy { padding: 14px; font-size: 17px; }
+    .cta { grid-template-columns: 1fr 1fr; }
+    .contact-box a { overflow-wrap: anywhere; }
+    .contact-box a:hover { text-decoration: underline; }
+    .photo-frame { margin: 0; }
+    .photo-frame figcaption { display: none; }
+    .photo-frame.missing-photo { min-height: 240px; display: flex; flex-direction: column; justify-content: center; align-items: center; border-radius: 24px; background: linear-gradient(135deg,#eaf6ff,#effaf3); padding: 28px; text-align: center; }
+    .photo-frame.missing-photo img { display: none; }
+    .photo-frame.missing-photo figcaption { display: block; color: var(--blue-dark); font-size: 18px; line-height: 1.5; }
+    .gallery .photo-frame { height: 100%; }
+    .gallery .tall { grid-row: span 2; }
+    .gallery .photo-frame img { min-height: 260px; }
+    .gallery .photo-frame.tall img { min-height: 540px; }
+    .gallery .missing-photo { min-height: 260px; }
+    .gallery .missing-photo.tall { min-height: 540px; }
+    @media (max-width: 980px) {
+      .menu { display: flex; width: 100%; justify-content: flex-start; font-size: 14px; gap: 10px 16px; }
+      .product-grid, .cta { grid-template-columns: 1fr; }
+      .hero-card img, .facility img { max-height: 500px; }
+      .gallery .photo-frame.tall, .gallery .photo-frame.tall img { grid-row: auto; min-height: 260px; }
+  
+.products-showcase { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:20px; margin:24px 0 38px; }
+.products-showcase figure { margin:0; overflow:hidden; border-radius:24px; background:white; box-shadow:var(--shadow); }
+.products-showcase img { width:100%; aspect-ratio:4/5; object-fit:cover; }
+.products-showcase figcaption { padding:14px; font-weight:700; text-align:center; color:var(--blue-dark); }
+.product-grid { display:block; }
+.product-grid .card { margin-bottom:24px; }
+.product-grid .card-body { max-width:960px; }
+.product-grid h3 { font-size:28px; }
+.nav-right { flex:1; justify-content:flex-end; flex-wrap:wrap; }
+.menu { max-width:780px; }
+.lang-switch { flex-shrink:0; }
+.gate-input:focus-visible { outline:3px solid #1687d9; outline-offset:2px; }
+.gate-button:disabled { opacity:.65; cursor:wait; }
+@media (max-width:1100px) { .nav-right { width:100%; flex-basis:100%; justify-content:space-between; } .menu { justify-content:flex-start; } }
+@media (max-width:980px) { .menu { width:auto; flex:1; } .products-showcase { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (max-width:520px) { .nav { gap:10px; } .nav-right { gap:12px; align-items:flex-start; } .menu { gap:10px 12px; font-size:13px; } .lang-btn { padding:7px 10px; } .products-showcase { gap:12px; } .products-showcase figcaption { padding:10px; font-size:15px; } section[id] { scroll-margin-top:200px; } }
+</style>
 </head>
 <body class="locked">
   <div class="gate" id="gate">
@@ -557,216 +613,132 @@
         <span data-lang-item="hu">Az oldal jelenleg fejlesztés alatt áll. A belépéshez add meg a jelszót.</span>
         <span data-lang-item="ro">Site-ul este în curs de dezvoltare. Pentru acces, introdu parola.</span>
       </p>
-      <input class="gate-input" id="gateInput" type="password" autocomplete="off" inputmode="numeric" placeholder="Jelszó / Parolă" />
+      <input class="gate-input" id="gateInput" type="password" autocomplete="off" inputmode="numeric" placeholder="Jelszó / Parolă" aria-label="Jelszó / Parolă">
       <button class="gate-button" id="gateButton">
         <span data-lang-item="hu">Belépés</span>
         <span data-lang-item="ro">Intrare</span>
       </button>
-      <div class="gate-msg" id="gateMsg"></div>
+      <div class="gate-msg" id="gateMsg" role="status" aria-live="polite"></div>
     </div>
   </div>
 
   <header class="topbar">
     <div class="container nav">
-      <a href="#top" class="brand">
-        <span class="brand-mark"></span>
-        <span>VILLY</span>
-      </a>
-      <div class="nav-right">
-        <nav class="menu">
-          <a href="#termekek"><span data-lang-item="hu">Termékek</span><span data-lang-item="ro">Produse</span></a>
-          <a href="#kiszerelesek"><span data-lang-item="hu">Kiszerelések</span><span data-lang-item="ro">Ambalaje</span></a>
-          <a href="#galeria"><span data-lang-item="hu">Galéria</span><span data-lang-item="ro">Galerie</span></a>
-          <a href="#telephely"><span data-lang-item="hu">Telephely</span><span data-lang-item="ro">Sediu</span></a>
-          <a href="#termeles"><span data-lang-item="hu">Termelés</span><span data-lang-item="ro">Producție</span></a>
-          <a href="#kapcsolat"><span data-lang-item="hu">Kapcsolat</span><span data-lang-item="ro">Contact</span></a>
-        </nav>
-        <div class="lang-switch">
+      <a href="#top" class="brand" aria-label="VILLY – a lap tetejére"><span class="brand-mark" aria-hidden="true"></span><span>VILLY</span></a>
+      <div class="nav-right"><nav class="menu" aria-label="Főmenü">
+        <a href="#rolunk"><span data-lang-item="hu">Rólunk</span><span data-lang-item="ro">Despre noi</span></a><a href="#termekek"><span data-lang-item="hu">Termékek</span><span data-lang-item="ro">Produse</span></a><a href="#gyartas"><span data-lang-item="hu">Gyártás</span><span data-lang-item="ro">Producție</span></a><a href="#egyuttmukodes"><span data-lang-item="hu">Együttműködés</span><span data-lang-item="ro">Colaborare</span></a><a href="#telephely"><span data-lang-item="hu">Telephely</span><span data-lang-item="ro">Sediu</span></a><a href="#galeria"><span data-lang-item="hu">Galéria</span><span data-lang-item="ro">Galerie</span></a><a href="#kapcsolat"><span data-lang-item="hu">Kapcsolat</span><span data-lang-item="ro">Contact</span></a>
+      </nav>
+    <div class="lang-switch">
           <button class="lang-btn active" type="button" data-lang-select="hu">HU</button>
           <button class="lang-btn" type="button" data-lang-select="ro">RO</button>
         </div>
-      </div>
-    </div>
+      </div></div>
   </header>
-
   <main id="top">
-    <section class="hero">
+    <section class="hero" aria-labelledby="hero-title">
       <div class="container hero-grid">
         <div>
-          <div class="eyebrow">VILLY – Izvorul Forrás SRL</div>
-          <h1>
-            <span data-lang-item="hu">Friss ízek, tiszta forrás, palackba zárt élmény.</span>
-            <span data-lang-item="ro">Gusturi proaspete, izvor curat, prospețime îmbuteliată.</span>
-          </h1>
-          <p class="lead">
-            <span data-lang-item="hu">A VILLY márkanév alatt forrásvizet és szénsavas üdítőitalokat kínálunk 0.5L, 2L és 3L kiszerelésben. Olyan termékeket gyártunk, amelyek elérhető árúak, mégis látványosak, frissek és kívánatosak.</span>
-            <span data-lang-item="ro">Sub marca VILLY oferim apă de izvor și băuturi răcoritoare carbogazoase în ambalaje de 0.5L, 2L și 3L. Realizăm produse accesibile ca preț, dar atrăgătoare, proaspete și apetisante.</span>
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#termekek"><span data-lang-item="hu">Termékek megtekintése</span><span data-lang-item="ro">Vezi produsele</span></a>
-            <a class="btn btn-secondary" href="#kapcsolat"><span data-lang-item="hu">Kapcsolat</span><span data-lang-item="ro">Contact</span></a>
-          </div>
-          <div class="hero-badges">
-            <div class="badge"><strong>0.5L</strong><span data-lang-item="hu">Kis kiszerelés, útközben is</span><span data-lang-item="ro">Format mic, ideal pentru drum</span></div>
-            <div class="badge"><strong>2L</strong><span data-lang-item="hu">Családi és mindennapi használat</span><span data-lang-item="ro">Pentru familie și uz zilnic</span></div>
-            <div class="badge"><strong>3L</strong><span data-lang-item="hu">Gazdaságos, nagyobb kiszerelés</span><span data-lang-item="ro">Format economic, mai mare</span></div>
-          </div>
+          <div class="eyebrow">VILLY · Izvorul Forrás SRL</div>
+          <h1 id="hero-title"><span data-lang-item="hu">Több mint 30 éve a térség ismert üdítőmárkája</span><span data-lang-item="ro">De peste 30 de ani, o marcă de răcoritoare cunoscută în regiune</span></h1>
+          <p class="lead"><span data-lang-item="hu">1991 óta dolgozunk azon, hogy megfizethető, megbízható termékeket juttassunk el a környék üzleteibe és a vásárlók asztalára.</span><span data-lang-item="ro">Din 1991, lucrăm pentru a aduce produse accesibile și de încredere în magazinele din zonă și pe mesele consumatorilor.</span></p>
+          <p class="lead"><span data-lang-item="hu">Termékeink Hargita megye és a környező térségek boltjaiban érhetők el. A Villy üdítők generációk számára jelentenek ismerős ízeket és emlékeket.</span><span data-lang-item="ro">Produsele noastre se găsesc în magazinele din județul Harghita și din zonele învecinate. Pentru mai multe generații, răcoritoarele Villy înseamnă gusturi familiare și amintiri.</span></p>
+          <p class="hero-note"><span data-lang-item="hu">A Villy üdítők és a Budvár Gyöngye szénsavas víz mögött ugyanaz a családi vállalkozás áll.</span><span data-lang-item="ro">În spatele răcoritoarelor Villy și al apei carbogazificate Budvár Gyöngye se află aceeași afacere de familie.</span></p>
         </div>
         <div class="hero-card">
-          <img src="images/hero-narancs.jpg" alt="VILLY narancs üdítő" />
+          <figure class="photo-frame"><img src="images/hero-narancs.jpg" alt="Villy narancsízű üdítőital" data-alt-hu="Villy narancsízű üdítőital" data-alt-ro="Villy cu aromă de portocală"></figure>
         </div>
       </div>
     </section>
-
-    <section id="termekek">
-      <div class="container">
-        <h2 class="section-title"><span data-lang-item="hu">Termékeink</span><span data-lang-item="ro">Produsele noastre</span></h2>
-        <p class="section-lead">
-          <span data-lang-item="hu">A VILLY kínálatában a frissítő üdítők és a tiszta megjelenésű forrásvíz találkozik. A célunk egyszerű: jó árú, látványos, szomjúságot keltő termékek, amelyek a polcon is azonnal észrevehetők.</span>
-          <span data-lang-item="ro">În oferta VILLY se întâlnesc băuturile răcoritoare revigorante și apa de izvor cu aspect curat. Scopul nostru este simplu: produse atractive, cu preț bun și aspect care trezește pofta de consum.</span>
-        </p>
-        <div class="products-grid">
-          <article class="card">
-            <img src="images/prod-narancs.jpg" alt="VILLY Narancs" />
-            <div class="card-body">
-              <h3><span data-lang-item="hu">Narancs</span><span data-lang-item="ro">Portocală</span></h3>
-              <p><span data-lang-item="hu">Élénk szín, friss citrusos karakter és erős impulzusvásárlói hatás.</span><span data-lang-item="ro">Culoare vie, caracter citric proaspăt și impact vizual puternic la cumpărare.</span></p>
-            </div>
-          </article>
-          <article class="card">
-            <img src="images/prod-cola.jpg" alt="VILLY Cola" />
-            <div class="card-body">
-              <h3>Cola</h3>
-              <p><span data-lang-item="hu">Sötét, karakteres megjelenés, klasszikus ízvilág és jól felismerhető kategória.</span><span data-lang-item="ro">Aspect intens și clasic, gust cunoscut și categorie ușor recognoscibilă.</span></p>
-            </div>
-          </article>
-          <article class="card">
-            <img src="images/prod-kiwi.jpg" alt="VILLY Kiwi" />
-            <div class="card-body">
-              <h3>Kiwi</h3>
-              <p><span data-lang-item="hu">Merész zöld szín, fiatalos látvány és különleges, figyelemfelkeltő hatás.</span><span data-lang-item="ro">Verde îndrăzneț, aspect tineresc și efect vizual aparte, care atrage atenția.</span></p>
-            </div>
-          </article>
-          <article class="card">
-            <img src="images/prod-citrom.jpg" alt="VILLY Citrom" />
-            <div class="card-body">
-              <h3><span data-lang-item="hu">Citrom</span><span data-lang-item="ro">Lămâie</span></h3>
-              <p><span data-lang-item="hu">Tiszta, üde citrusos hangulat, amely hűsítő és könnyű érzetet ad.</span><span data-lang-item="ro">Atmosferă citrică curată și răcoritoare, cu senzație ușoară și proaspătă.</span></p>
-            </div>
-          </article>
+    <section id="rolunk" aria-labelledby="story-title">
+      <div class="container"><div class="story">
+        <h2 class="section-title" id="story-title"><span data-lang-item="hu">Történetünk</span><span data-lang-item="ro">Povestea noastră</span></h2>
+        <div class="copy">
+          <p><span data-lang-item="hu">Az Izvorul Forrás SRL 1991-ben kezdte meg működését Székelyudvarhelyen. Családi vállalkozásunk az évek során folyamatosan fejlődött, miközben megőrizte helyi kötődését és alapértékeit.</span><span data-lang-item="ro">Izvorul Forrás SRL și-a început activitatea în 1991, la Odorheiu Secuiesc. Afacerea noastră de familie s-a dezvoltat constant de-a lungul anilor, păstrându-și legătura cu comunitatea locală și valorile de bază.</span></p>
+          <p><span data-lang-item="hu">Ma már fenyédi telephelyünkön készülnek a Villy üdítők és a Budvár Gyöngye szénsavas palackozott víz. Vállalkozásunk történetét több generáció munkája alakítja. Célunk ma is ugyanaz: megbízható termékeket gyártani, és eljuttatni őket a térség üzleteibe és vásárlóihoz.</span><span data-lang-item="ro">Astăzi, răcoritoarele Villy și apa carbogazificată îmbuteliată Budvár Gyöngye sunt produse la sediul nostru din Brădești. Povestea afacerii noastre este construită prin munca mai multor generații. Scopul nostru a rămas același: să realizăm produse de încredere și să le aducem în magazinele și la consumatorii din regiune.</span></p>
         </div>
-      </div>
+      </div></div>
     </section>
-
-    <section id="kiszerelesek">
+    <section id="termekek" aria-labelledby="products-title">
       <div class="container">
-        <h2 class="section-title"><span data-lang-item="hu">Elérhető kiszerelések</span><span data-lang-item="ro">Ambalaje disponibile</span></h2>
-        <p class="section-lead"><span data-lang-item="hu">A VILLY többféle fogyasztási helyzetre kínál megfelelő méretet – kisebb, családi és gazdaságos kiszerelésben.</span><span data-lang-item="ro">VILLY oferă dimensiunea potrivită pentru mai multe situații de consum – format mic, de familie și economic.</span></p>
-        <div class="sizes">
-          <div class="size-box size-s">
-            <small><span data-lang-item="hu">Kiszerelés</span><span data-lang-item="ro">Ambalaj</span></small>
-            <strong>0.5L</strong>
-            <p><span data-lang-item="hu">Kézre álló, könnyen vihető méret. Jó választás egyéni fogyasztásra és impulzusvásárlásra.</span><span data-lang-item="ro">Mărime ușor de transportat, ideală pentru consum individual și cumpărături impulsive.</span></p>
+        <h2 class="section-title" id="products-title"><span data-lang-item="hu">Termékeink</span><span data-lang-item="ro">Produsele noastre</span></h2>
+        <div class="product-grid">
+          <article class="card"><div class="card-body">
+            <h3><span data-lang-item="hu">Villy üdítők</span><span data-lang-item="ro">Răcoritoare Villy</span></h3>
+            <p><span data-lang-item="hu">A Villy márkanév alatt többféle ízben készítünk szénsavas üdítőitalokat. Kínálatunkban kóla, narancs, citrom, körte, barack, kiwi, erdei gyümölcs, bodza, ananász, tutti-frutti, tonic és eper-banán ízű üdítők is megtalálhatók.</span><span data-lang-item="ro">Sub marca Villy producem băuturi răcoritoare carbogazoase cu diverse arome. Gama noastră include cola, portocală, lămâie, pară, piersică, kiwi, fructe de pădure, soc, ananas, tutti-frutti, tonic și căpșuni-banane.</span></p>
+            <p class="product-sizes"><strong><span data-lang-item="hu">Elérhető kiszerelések:</span><span data-lang-item="ro">Ambalaje disponibile:</span></strong><br>0,5 L · 2 L · 3 L · 3,05 L</p>
           </div>
-          <div class="size-box size-m">
-            <small><span data-lang-item="hu">Kiszerelés</span><span data-lang-item="ro">Ambalaj</span></small>
-            <strong>2L</strong>
-            <p><span data-lang-item="hu">A klasszikus családi méret, amely a legtöbb háztartás számára praktikus és jól ismert választás.</span><span data-lang-item="ro">Formatul clasic de familie, practic și bine cunoscut în majoritatea gospodăriilor.</span></p>
+          <div class="products-showcase"><figure><img src="images/prod-narancs.jpg" alt="Villy Narancs" loading="lazy" data-alt-hu="Villy Narancs" data-alt-ro="Villy Portocală"><figcaption><span data-lang-item="hu">Narancs</span><span data-lang-item="ro">Portocală</span></figcaption></figure><figure><img src="images/prod-cola.jpg" alt="Villy Cola" loading="lazy" data-alt-hu="Villy Cola" data-alt-ro="Villy Cola"><figcaption><span data-lang-item="hu">Cola</span><span data-lang-item="ro">Cola</span></figcaption></figure><figure><img src="images/prod-kiwi.jpg" alt="Villy Kiwi" loading="lazy" data-alt-hu="Villy Kiwi" data-alt-ro="Villy Kiwi"><figcaption><span data-lang-item="hu">Kiwi</span><span data-lang-item="ro">Kiwi</span></figcaption></figure><figure><img src="images/prod-citrom.jpg" alt="Villy Citrom" loading="lazy" data-alt-hu="Villy Citrom" data-alt-ro="Villy Lămâie"><figcaption><span data-lang-item="hu">Citrom</span><span data-lang-item="ro">Lămâie</span></figcaption></figure><figure><img src="images/ananasz.jpg" alt="Villy Ananász" loading="lazy" data-alt-hu="Villy Ananász" data-alt-ro="Villy Ananas"><figcaption><span data-lang-item="hu">Ananász</span><span data-lang-item="ro">Ananas</span></figcaption></figure><figure><img src="images/barack.jpg" alt="Villy Barack" loading="lazy" data-alt-hu="Villy Barack" data-alt-ro="Villy Piersică"><figcaption><span data-lang-item="hu">Barack</span><span data-lang-item="ro">Piersică</span></figcaption></figure><figure><img src="images/erdei_gyumolcs.jpg" alt="Villy Erdei gyümölcs" loading="lazy" data-alt-hu="Villy Erdei gyümölcs" data-alt-ro="Villy Fructe de pădure"><figcaption><span data-lang-item="hu">Erdei gyümölcs</span><span data-lang-item="ro">Fructe de pădure</span></figcaption></figure><figure><img src="images/korte.jpg" alt="Villy Körte" loading="lazy" data-alt-hu="Villy Körte" data-alt-ro="Villy Pară"><figcaption><span data-lang-item="hu">Körte</span><span data-lang-item="ro">Pară</span></figcaption></figure><figure><img src="images/mango.jpg" alt="Villy Mangó" loading="lazy" data-alt-hu="Villy Mangó" data-alt-ro="Villy Mango"><figcaption><span data-lang-item="hu">Mangó</span><span data-lang-item="ro">Mango</span></figcaption></figure><figure><img src="images/tutti_frutti.jpg" alt="Villy Tutti-frutti" loading="lazy" data-alt-hu="Villy Tutti-frutti" data-alt-ro="Villy Tutti-frutti"><figcaption><span data-lang-item="hu">Tutti-frutti</span><span data-lang-item="ro">Tutti-frutti</span></figcaption></figure></div></article>
+          <article class="card"><div class="card-body">
+            <h3><span data-lang-item="hu">Budvár Gyöngye szénsavas palackozott víz</span><span data-lang-item="ro">Apă carbogazificată îmbuteliată Budvár Gyöngye</span></h3>
+            <p><span data-lang-item="hu">A Budvár Gyöngye vállalkozásunk szénsavasvíz-márkája. A saját artézi kutunkból származó vizet korszerű vízkezelési eljárással tisztítjuk, majd szénsavval dúsítva palackozzuk.</span><span data-lang-item="ro">Budvár Gyöngye este marca noastră de apă carbogazificată. Apa provenită din propriul puț artezian este purificată printr-un proces modern de tratare, apoi îmbuteliată după adăugarea dioxidului de carbon.</span></p>
+            <p><span data-lang-item="hu">A gyártás és a minőségellenőrzés minden szakaszában figyelmet fordítunk az élelmiszerbiztonsági előírások betartására. Saját laboratóriumunkban rendszeresen ellenőrizzük a víz minőségét, hogy termékünk egyenletes minőségben kerüljön a vásárlókhoz.</span><span data-lang-item="ro">În fiecare etapă a producției și a controlului calității, acordăm atenție respectării cerințelor de siguranță alimentară. Verificăm periodic calitatea apei în laboratorul propriu, pentru ca produsul nostru să ajungă la consumatori cu o calitate constantă.</span></p>
+            <p class="product-sizes"><strong><span data-lang-item="hu">Elérhető kiszerelések:</span><span data-lang-item="ro">Ambalaje disponibile:</span></strong><br>0,5 L · 2 L · 3,05 L</p>
           </div>
-          <div class="size-box size-l">
-            <small><span data-lang-item="hu">Kiszerelés</span><span data-lang-item="ro">Ambalaj</span></small>
-            <strong>3L</strong>
-            <p><span data-lang-item="hu">Gazdaságos megoldás nagyobb fogyasztásra, családi használatra és kedvező árérzet kommunikálására.</span><span data-lang-item="ro">Soluție economică pentru consum mai mare, utilizare în familie și percepție de preț avantajos.</span></p>
-          </div>
+          </article>
         </div>
       </div>
     </section>
-
-    <section id="galeria">
-      <div class="container">
-        <h2 class="section-title"><span data-lang-item="hu">Látványos termékgaléria</span><span data-lang-item="ro">Galerie de produs</span></h2>
-        <p class="section-lead"><span data-lang-item="hu">A képek célja, hogy ne csak megmutassák a palackokat, hanem szomjúságérzetet keltsenek és azonnal fogyasztásra csábítsanak.</span><span data-lang-item="ro">Scopul imaginilor este să nu arate doar sticlele, ci să transmită senzația de prospețime și pofta imediată de consum.</span></p>
-        <div class="gallery">
-          <img class="tall" src="images/gallery-1.jpg" alt="Narancs üdítő" />
-          <img src="images/gallery-2.jpg" alt="Cola üdítő" />
-          <img src="images/gallery-3.jpg" alt="Kiwi üdítő" />
-          <img src="images/gallery-4.jpg" alt="Citrom üdítő" />
-          <img src="images/gallery-5.jpg" alt="Erdei gyümölcs üdítő" />
+    <section id="gyartas" aria-labelledby="quality-title">
+      <div class="container quality">
+        <h2 class="section-title" id="quality-title"><span data-lang-item="hu">Gyártás és minőség</span><span data-lang-item="ro">Producție și calitate</span></h2>
+        <div class="copy">
+          <p><span data-lang-item="hu">Vállalkozásunk 1991 óta működik. Az évek során folyamatos fejlesztésekkel alkalmazkodtunk a változó piaci igényekhez és technológiai lehetőségekhez.</span><span data-lang-item="ro">Compania noastră își desfășoară activitatea din 1991. Prin investiții și îmbunătățiri continue, ne-am adaptat cerințelor pieței și evoluției tehnologiei.</span></p>
+          <p><span data-lang-item="hu">Fenyédi telephelyünkön korszerű gyártósor működik, ahol a termelési folyamatok jelentős része automatizált. A gyártás során kiemelt figyelmet fordítunk a tiszta, rendezett munkakörnyezetre és az élelmiszerbiztonsági előírások betartására.</span><span data-lang-item="ro">La sediul nostru din Brădești funcționează o linie modernă de producție, cu o mare parte a proceselor automatizate. Acordăm o atenție deosebită unui mediu de lucru curat și ordonat și respectării cerințelor de siguranță alimentară.</span></p>
+          <p><span data-lang-item="hu">A minőségellenőrzés mindennapi munkánk része. Saját laboratóriumunkban rendszeresen végzünk vízminőségi vizsgálatokat, és ellenőrizzük a gyártási folyamatokat, hogy termékeink állandó minőségben kerüljenek a vásárlókhoz.</span><span data-lang-item="ro">Controlul calității face parte din activitatea noastră zilnică. Efectuăm periodic analize ale calității apei în laboratorul propriu și verificăm procesele de producție, pentru ca produsele noastre să ajungă la consumatori cu o calitate constantă.</span></p>
+          <p><span data-lang-item="hu">Csapatunk több tagja hosszú évek, sőt évtizedek óta dolgozik a vállalatnál. Tapasztalatuk és szakértelmük fontos szerepet játszik mindennapi működésünkben.</span><span data-lang-item="ro">Mai mulți membri ai echipei lucrează în companie de mulți ani, unii chiar de decenii. Experiența și cunoștințele lor au un rol important în activitatea noastră de zi cu zi.</span></p>
         </div>
       </div>
     </section>
-
-    <section id="telephely">
+    <section id="egyuttmukodes" aria-labelledby="cooperation-title">
+      <div class="container"><div class="cooperation">
+        <h2 class="section-title" id="cooperation-title"><span data-lang-item="hu">Együttműködés</span><span data-lang-item="ro">Colaborare</span></h2>
+        <div class="copy">
+          <p><strong><span data-lang-item="hu">Saját márkáink gyártása mellett partneri együttműködésre és bérpalackozásra is nyitottak vagyunk.</span><span data-lang-item="ro">Pe lângă producția mărcilor proprii, suntem deschiși colaborărilor și serviciilor de îmbuteliere pentru terți.</span></strong></p>
+          <p><span data-lang-item="hu">Fenyédi üzemünkben a PET-palackoktól és kupakoktól a címkézésig rendelkezésre áll a palackozáshoz szükséges háttér. Gyártósorunk nagyobb mennyiségű termék előállítására is alkalmas, a munkafolyamatokat pedig rendszeres minőségellenőrzés kíséri.</span><span data-lang-item="ro">La fabrica noastră din Brădești dispunem de resursele necesare îmbutelierii, de la sticle PET și capace până la etichetare. Linia noastră permite și producția unor cantități mai mari, iar procesele sunt însoțite de verificări periodice ale calității.</span></p>
+          <p><span data-lang-item="hu">Ha italgyártáshoz vagy palackozáshoz keresel partnert, vedd fel velünk a kapcsolatot. Szívesen egyeztetünk az egyedi igényekről és az együttműködés lehetőségeiről.</span><span data-lang-item="ro">Dacă ești în căutarea unui partener pentru producția sau îmbutelierea băuturilor, contactează-ne. Discutăm cu plăcere despre cerințele tale și posibilitățile de colaborare.</span></p>
+        </div>
+        <a class="btn btn-primary" href="#kapcsolat"><span data-lang-item="hu">Kapcsolatfelvétel</span><span data-lang-item="ro">Contactează-ne</span></a>
+      </div></div>
+    </section>
+    <section id="telephely" aria-labelledby="facility-title">
       <div class="container">
-        <h2 class="section-title"><span data-lang-item="hu">Valódi háttér, valódi gyártás</span><span data-lang-item="ro">Fundal real, producție reală</span></h2>
-        <p class="section-lead"><span data-lang-item="hu">A telephely és a valós termékfotók bizalmat építenek. Ez nem látványterv, hanem egy működő vállalkozás valós háttere.</span><span data-lang-item="ro">Sediul și imaginile reale ale produselor construiesc încredere. Acesta nu este doar un concept, ci baza reală a unei afaceri funcționale.</span></p>
+        <h2 class="section-title" id="facility-title"><span data-lang-item="hu">Telephely</span><span data-lang-item="ro">Sediu</span></h2>
         <div class="facility">
-          <img src="images/telephely.jpg" alt="A VILLY telephelye" />
-          <div>
-            <h3 style="font-size: 30px; margin-top: 0;"><span data-lang-item="hu">Miért előny ez a partnereknek?</span><span data-lang-item="ro">De ce este un avantaj pentru parteneri?</span></h3>
-            <ul>
-              <li><span data-lang-item="hu">Rendezett, valós telephely és kézzelfogható gyártási háttér.</span><span data-lang-item="ro">Sediu real, bine organizat și bază de producție vizibilă.</span></li>
-              <li><span data-lang-item="hu">Forrásvíz és üdítőital palackozás egy helyen.</span><span data-lang-item="ro">Îmbuteliere de apă de izvor și băuturi răcoritoare într-un singur loc.</span></li>
-              <li><span data-lang-item="hu">Termékek több kiszerelésben: 0.5L, 2L és 3L.</span><span data-lang-item="ro">Produse în mai multe dimensiuni: 0.5L, 2L și 3L.</span></li>
-              <li><span data-lang-item="hu">Megjelenésben olcsóbb piaci irány, egy kis prémium érzet mellett.</span><span data-lang-item="ro">Poziționare accesibilă, cu un plus de aspect premium.</span></li>
-              <li><span data-lang-item="hu">Bérpalackozási és partneri együttműködési lehetőség.</span><span data-lang-item="ro">Posibilitate de îmbuteliere pentru terți și colaborări de parteneriat.</span></li>
-            </ul>
+          <figure class="photo-frame"><img src="images/telephely.jpg" alt="Az Izvorul Forrás SRL fenyédi telephelye" loading="lazy" data-alt-hu="Az Izvorul Forrás SRL fenyédi telephelye" data-alt-ro="Az Izvorul Forrás SRL din Brădești"></figure>
+          <div class="copy">
+            <p><span data-lang-item="hu">Vállalatunk székhelye és gyártóüzeme Fenyéden található. Itt zajlik a gyártás, a minőségellenőrzés és a raktározás, valamint a kiszállítás megszervezése.</span><span data-lang-item="ro">Sediul și fabrica noastră se află în Brădești. Aici se desfășoară producția, controlul calității, depozitarea și organizarea livrărilor.</span></p>
+            <p><span data-lang-item="hu">Termékeinket elsősorban Székelyudvarhely és környéke, valamint Hargita megye településeinek üzleteibe szállítjuk. Kiszállítási területünk mintegy 100 kilométeres körzetet fed le: többek között Csíkszeredába, Gyergyószentmiklósra és Segesvárra is eljutunk.</span><span data-lang-item="ro">Livrăm produsele noastre în principal magazinelor din Odorheiu Secuiesc și împrejurimi, precum și din localitățile județului Harghita. Acoperim o rază de aproximativ 100 de kilometri, ajungând inclusiv la Miercurea Ciuc, Gheorgheni și Sighișoara.</span></p>
+            <p><span data-lang-item="hu">Több mint három évtizede dolgozunk azon, hogy a térség kisboltjai, viszonteladói és nagykereskedelmi partnerei megbízható ellátásban részesüljenek.</span><span data-lang-item="ro">De peste trei decenii, lucrăm pentru a asigura o aprovizionare de încredere magazinelor locale, revânzătorilor și partenerilor angro din regiune.</span></p>
           </div>
         </div>
       </div>
     </section>
-
-    <section id="termeles">
+    <section id="galeria" aria-labelledby="gallery-title">
       <div class="container">
-        <h2 class="section-title"><span data-lang-item="hu">Termelés</span><span data-lang-item="ro">Producție</span></h2>
-        <p class="section-lead"><span data-lang-item="hu">Ez a rész külön a termelési folyamat, gépek és üzemképek számára lett fenntartva. Ide később könnyen beilleszthető a feltöltött termelési fotó.</span><span data-lang-item="ro">Această secțiune este rezervată pentru procesul de producție, utilaje și imagini din fabrică. Aici se poate adăuga ușor ulterior fotografia încărcată pentru producție.</span></p>
-        <div class="production">
-          <div class="placeholder">
-            <div>
-              <strong><span data-lang-item="hu">Helykitöltő kép a termeléshez</span><span data-lang-item="ro">Loc rezervat pentru imaginea de producție</span></strong><br><br>
-              <span data-lang-item="hu">Ide kerül majd a termelési fotó, amikor feltöltöd.</span>
-              <span data-lang-item="ro">Aici va fi adăugată fotografia de producție după încărcare.</span>
-            </div>
-          </div>
-          <div>
-            <h3 style="font-size: 30px; margin-top: 0;"><span data-lang-item="hu">Mit mutathat ez a rész?</span><span data-lang-item="ro">Ce poate arăta această secțiune?</span></h3>
-            <ul>
-              <li><span data-lang-item="hu">Palackozó sor és gépek.</span><span data-lang-item="ro">Linia de îmbuteliere și utilajele.</span></li>
-              <li><span data-lang-item="hu">Tisztaság, higiénia és munkafolyamatok.</span><span data-lang-item="ro">Curățenie, igienă și fluxuri de lucru.</span></li>
-              <li><span data-lang-item="hu">Raktár vagy késztermék terület.</span><span data-lang-item="ro">Depozit sau zonă de produs finit.</span></li>
-              <li><span data-lang-item="hu">Partneri bizalomépítés valós gyártási képekkel.</span><span data-lang-item="ro">Construirea încrederii prin imagini reale din producție.</span></li>
-            </ul>
-          </div>
+        <h2 class="section-title" id="gallery-title"><span data-lang-item="hu">Galéria</span><span data-lang-item="ro">Galerie</span></h2>
+        <p class="section-lead"><span data-lang-item="hu">Pillanatok a gyártásból, telephelyünkről és termékeinkről.</span><span data-lang-item="ro">Imagini din producție, de la sediul nostru și cu produsele noastre.</span></p>
+        <div class="gallery">
+          <figure class="photo-frame tall"><img src="images/gallery-1.jpg" alt="Villy narancsízű üdítőital" loading="lazy" data-alt-hu="Villy narancsízű üdítőital" data-alt-ro="Villy cu aromă de portocală"></figure>
+          <figure class="photo-frame"><img src="images/gallery-2.jpg" alt="Villy kólaízű üdítőital" loading="lazy" data-alt-hu="Villy kólaízű üdítőital" data-alt-ro="Villy Cola"></figure>
+          <figure class="photo-frame"><img src="images/gallery-3.jpg" alt="Villy kiwiízű üdítőital" loading="lazy" data-alt-hu="Villy kiwiízű üdítőital" data-alt-ro="Villy Kiwi"></figure>
+          <figure class="photo-frame"><img src="images/gallery-4.jpg" alt="Villy citromízű üdítőital" loading="lazy" data-alt-hu="Villy citromízű üdítőital" data-alt-ro="Villy cu aromă de lămâie"></figure>
+          <figure class="photo-frame"><img src="images/gallery-5.jpg" alt="Villy erdei gyümölcs ízű üdítőital" loading="lazy" data-alt-hu="Villy erdei gyümölcs ízű üdítőital" data-alt-ro="Villy cu aromă de fructe de pădure"></figure>
         </div>
       </div>
     </section>
-
-    <section>
-      <div class="container cta" id="kapcsolat">
-        <div>
-          <h2 class="section-title" style="color: white; margin-top: 0;"><span data-lang-item="hu">VILLY – készen a következő lépésre</span><span data-lang-item="ro">VILLY – pregătit pentru următorul pas</span></h2>
-          <p class="section-lead" style="color: rgba(255,255,255,0.88); margin-bottom: 0;">
-            <span data-lang-item="hu">Akár saját termékekről, akár partneri együttműködésről vagy bérpalackozásról van szó, a VILLY márka mögött valódi háttér és fejlődő arculat áll.</span>
-            <span data-lang-item="ro">Fie că este vorba de produse proprii, colaborări sau îmbuteliere pentru terți, în spatele mărcii VILLY există o bază reală și o imagine în dezvoltare.</span>
-          </p>
-        </div>
+    <section id="kapcsolat" aria-labelledby="contact-title">
+      <div class="container cta">
+        <div><h2 class="section-title" id="contact-title" style="color:white; margin:0;"><span data-lang-item="hu">Kérdésed van?</span><span data-lang-item="ro">Ai întrebări?</span><br><span data-lang-item="hu">Vedd fel velünk a kapcsolatot!</span><span data-lang-item="ro">Contactează-ne!</span></h2></div>
         <div class="contact-box">
-          <strong style="font-size: 22px; display: block; margin-bottom: 12px;"><span data-lang-item="hu">Kapcsolat</span><span data-lang-item="ro">Contact</span></strong>
-          <div><strong><span data-lang-item="hu">Cégnév:</span><span data-lang-item="ro">Companie:</span></strong> VILLY – Izvorul Forrás SRL</div>
-          <div><strong><span data-lang-item="hu">Profil:</span><span data-lang-item="ro">Profil:</span></strong> <span data-lang-item="hu">Forrásvíz és üdítőital gyártás</span><span data-lang-item="ro">Producție apă de izvor și băuturi răcoritoare</span></div>
-          <div><strong><span data-lang-item="hu">Kiszerelések:</span><span data-lang-item="ro">Ambalaje:</span></strong> 0.5L / 2L / 3L</div>
-          <div><strong>Email:</strong> info@pelda.hu</div>
-          <div><strong><span data-lang-item="hu">Telefon:</span><span data-lang-item="ro">Telefon:</span></strong> +40 000 000 000</div>
-          <div><strong><span data-lang-item="hu">Cím:</span><span data-lang-item="ro">Adresă:</span></strong> <span data-lang-item="hu">ide kerülhet a székhely címe</span><span data-lang-item="ro">aici poate fi introdusă adresa sediului</span></div>
+          <div><strong><span data-lang-item="hu">Telefonszám:</span><span data-lang-item="ro">Telefon:</span></strong> <a href="tel:+40756052099">0756 052 099</a></div>
+          <div><strong><span data-lang-item="hu">E-mail:</span><span data-lang-item="ro">E-mail:</span></strong> <a href="mailto:izvorul_forras@yahoo.com">izvorul_forras@yahoo.com</a></div>
+          <div><strong><span data-lang-item="hu">Cím:</span><span data-lang-item="ro">Adresă:</span></strong><span data-lang-item="hu">Fenyéd, Petőfi Sándor utca 185., Hargita megye</span><span data-lang-item="ro">Brădești, strada Petőfi Sándor nr. 185, județul Harghita</span></div>
+          <div><strong><span data-lang-item="hu">Nyitvatartás:</span><span data-lang-item="ro">Program:</span></strong><span data-lang-item="hu">hétfőtől péntekig, 08:00–16:00</span><span data-lang-item="ro">luni–vineri, 08:00–16:00</span></div>
         </div>
       </div>
     </section>
   </main>
-
-  <footer>
-    <div class="container">© VILLY – Izvorul Forrás SRL</div>
-  </footer>
-
+  <footer><div class="container">© VILLY · Izvorul Forrás SRL</div></footer>
   <script>
     document.documentElement.setAttribute('data-lang', 'hu');
 
@@ -774,7 +746,15 @@
     function setLang(lang) {
       document.documentElement.lang = lang === 'ro' ? 'ro' : 'hu';
       document.documentElement.setAttribute('data-lang', lang);
-      langButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.langSelect === lang));
+      langButtons.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.langSelect === lang);
+        btn.setAttribute('aria-pressed', String(btn.dataset.langSelect === lang));
+      });
+      document.querySelectorAll('img[data-alt-hu]').forEach(img => img.alt = img.getAttribute('data-alt-' + lang));
+      document.title = lang === 'ro' ? 'VILLY – Răcoritoare și apă carbogazificată Budvár Gyöngye' : 'VILLY – Üdítőitalok és Budvár Gyöngye szénsavas víz';
+      const description = document.querySelector('meta[name="description"]');
+      if (description) description.content = lang === 'ro' ? 'Răcoritoare Villy și apă carbogazificată Budvár Gyöngye din Brădești. Afacere de familie din 1991. Produse, producție și colaborare.' : 'Villy üdítőitalok és Budvár Gyöngye szénsavas palackozott víz Fenyédről. Családi vállalkozás 1991 óta. Termékek, gyártás és együttműködés.';
+
     }
     langButtons.forEach(btn => {
       btn.addEventListener('click', () => setLang(btn.dataset.langSelect));
