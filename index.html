@@ -349,6 +349,10 @@ setLang(document.documentElement.lang);
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script><script src="/_vercel/insights/script.js" defer></script><script>
 (function () {
+  // Repeated script execution within the same document must not count twice.
+  if (window.__villyCounterInitialized) return;
+  window.__villyCounterInitialized = true;
+  const pageviewId = window.crypto.randomUUID();
   const trigger = document.getElementById('footerCounterTrigger');
   const output = document.getElementById('footerCounterValue');
   let holding = false;
@@ -397,7 +401,7 @@ setLang(document.documentElement.lang);
   document.querySelectorAll('[data-lang-select]').forEach(function (button) { button.addEventListener('click', display); });
   // One request for each full page load. No message, name or telephone number is included.
   if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
-    fetch('/api/pageviews', { method: 'POST', credentials: 'same-origin', keepalive: true })
+    fetch('/api/pageviews', { method: 'POST', headers: { 'X-Pageview-Id': pageviewId }, credentials: 'same-origin', keepalive: true })
       .then(function (response) { if (!response.ok) throw new Error('Counter unavailable'); return response.json(); })
       .then(function (data) { if (Number.isSafeInteger(data.count) && data.count >= 0) { knownCount = data.count; display(); } })
       .catch(function () {});
