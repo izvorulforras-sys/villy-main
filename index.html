@@ -111,6 +111,27 @@ footer { padding:0 0 36px; color:#748093; text-align:center; }
  .contact-box { padding:18px; }
 }
 @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .btn { transition:none; } }
+
+.wa-launch { position:fixed; right:22px; bottom:22px; z-index:100; display:flex; align-items:center; gap:10px; border:0; border-radius:999px; padding:15px 21px; background:#087f46; color:white; font-size:16px; font-weight:700; cursor:pointer; box-shadow:0 8px 28px #064e3b40; }
+.wa-launch:hover { background:#06663a; }
+.wa-launch svg { width:25px; height:25px; }
+.wa-dialog { position:fixed; inset:auto 22px 88px auto; margin:0; width:min(390px,calc(100vw - 32px)); max-height:calc(100dvh - 112px); overflow:auto; padding:0; border:0; border-radius:24px; color:var(--text); background:white; box-shadow:0 20px 80px #102d3d40; }
+.wa-dialog::backdrop { background:rgba(10,35,50,.25); }
+.wa-header { background:#087f46; color:white; padding:24px 58px 22px 24px; position:relative; }
+.wa-header h2 { margin:0 0 8px; font-size:24px; line-height:1.2; }
+.wa-header p { margin:0; font-size:14px; line-height:1.55; }
+.wa-close { position:absolute; top:14px; right:14px; width:36px; height:36px; border:1px solid #ffffff80; border-radius:50%; background:transparent; color:white; font-size:25px; cursor:pointer; }
+.wa-form { padding:22px 24px 24px; }
+.wa-field { display:block; margin:0 0 16px; font-weight:700; font-size:15px; }
+.wa-field input,.wa-field textarea { display:block; width:100%; margin-top:7px; padding:12px; border:1px solid #c7d4d0; border-radius:12px; font:inherit; font-weight:400; color:var(--text); background:#fff; }
+.wa-field textarea { resize:vertical; min-height:110px; }
+.wa-note { font-size:13px; line-height:1.6; color:var(--muted); margin:0 0 18px; }
+.wa-submit { width:100%; border:0; border-radius:12px; padding:14px 12px; background:#087f46; color:white; font-weight:700; cursor:pointer; }
+.wa-submit:disabled { background:#697973; cursor:default; }
+.wa-status { margin:14px 0 0; color:#075738; font-size:14px; line-height:1.5; }
+.wa-status:empty { display:none; }
+footer { padding-bottom:100px; }
+@media(max-width:520px) { .wa-launch { right:16px; bottom:max(16px,env(safe-area-inset-bottom)); padding:14px 18px; } .wa-dialog { right:16px; bottom:84px; max-height:calc(100dvh - 100px); } }
 </style>
 </head>
 <body>
@@ -256,5 +277,70 @@ footer { padding:0 0 36px; color:#748093; text-align:center; }
     setLang('hu');
 
 </script>
-</body>
+<div id="waWidget"><button class="wa-launch" id="waLaunch" type="button" aria-haspopup="dialog" aria-controls="waDialog" data-label-hu="WhatsApp-üzenet írása" data-label-ro="Scrie un mesaj pe WhatsApp" aria-label="WhatsApp-üzenet írása">
+<svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 11.5a9 9 0 0 1-13.3 7.9L3 21l1.6-4.7A9 9 0 1 1 21 11.5Z"></path><path d="M8 7.2c.5-.3 1.5 1.8 1.3 2.2l-.6.9c.7 1.4 1.7 2.4 3.1 3.1l.9-.6c.4-.2 2.5.8 2.2 1.3-.5 1.2-1.4 1.6-2.5 1.3-3.4-.9-5.5-3-6.4-6.4-.3-1.1.1-2 1.3-2.5Z"></path></svg>
+<span data-lang-item="hu">Írj nekünk!</span><span data-lang-item="ro">Scrie-ne!</span></button>
+<dialog class="wa-dialog" id="waDialog" aria-labelledby="waTitle" aria-describedby="waIntro">
+<div class="wa-header"><h2 id="waTitle"><span data-lang-item="hu">Írj nekünk WhatsAppon!</span><span data-lang-item="ro">Scrie-ne pe WhatsApp!</span></h2><p id="waIntro"><span data-lang-item="hu">Termékekről, rendelésről vagy együttműködésről érdeklődnél?</span><span data-lang-item="ro">Ai întrebări despre produse, comenzi sau colaborare?</span></p>
+<button type="button" class="wa-close" id="waClose" aria-label="Bezárás" data-label-hu="Bezárás" data-label-ro="Închide">×</button></div>
+<form class="wa-form" id="waForm">
+<label class="wa-field" for="waName"><span data-lang-item="hu">Neved (nem kötelező)</span><span data-lang-item="ro">Numele tău (opțional)</span><input id="waName" type="text" autocomplete="name" maxlength="80"></label>
+<label class="wa-field" for="waMessage"><span data-lang-item="hu">Üzeneted</span><span data-lang-item="ro">Mesajul tău</span><textarea id="waMessage" rows="4" required maxlength="1500"></textarea></label>
+<p class="wa-note"><span data-lang-item="hu">A következő lépésben megnyílik a WhatsAppod az előkészített üzenettel. Ott még nyomd meg a Küldés gombot.</span><span data-lang-item="ro">La pasul următor se deschide WhatsApp cu mesajul pregătit. Apasă apoi butonul de trimitere din WhatsApp.</span></p>
+<button class="wa-submit" id="waSubmit" type="submit"><span data-lang-item="hu">Tovább a WhatsAppra</span><span data-lang-item="ro">Continuă în WhatsApp</span></button>
+<p class="wa-status" id="waStatus" role="status" aria-live="polite"></p>
+</form></dialog></div><script>
+// Before publishing, enter the confirmed full recipient number, in international digits only.
+const WHATSAPP_PHONE = '40722626256';
+(function () {
+  const launch = document.getElementById('waLaunch');
+  const dialog = document.getElementById('waDialog');
+  const close = document.getElementById('waClose');
+  const form = document.getElementById('waForm');
+  const nameField = document.getElementById('waName');
+  const messageField = document.getElementById('waMessage');
+  const submit = document.getElementById('waSubmit');
+  const status = document.getElementById('waStatus');
+  function currentLang() { return document.documentElement.lang === 'ro' ? 'ro' : 'hu'; }
+  function text(hu, ro) { return currentLang() === 'ro' ? ro : hu; }
+  function normalizePhone(value) {
+    let phone = value.trim().replace(/[\s().-]/g, '');
+    if (phone.startsWith('+')) phone = phone.slice(1);
+    if (phone.startsWith('00')) phone = phone.slice(2);
+    if (/^07\d{8}$/.test(phone)) phone = '40' + phone.slice(1);
+    return /^[1-9]\d{7,14}$/.test(phone) ? phone : '';
+  }
+  function updateAvailability() {
+    submit.disabled = !WHATSAPP_PHONE;
+    status.textContent = submit.disabled ? text('A WhatsApp-kapcsolat hamarosan elérhető. Addig keress minket telefonon vagy e-mailben.','Contactul WhatsApp va fi disponibil în curând. Între timp, ne poți contacta telefonic sau prin e-mail.') : '';
+  }
+  function closeDialog() { dialog.close(); launch.focus(); }
+  launch.addEventListener('click', function () { updateAvailability(); dialog.showModal(); nameField.focus(); });
+  close.addEventListener('click', closeDialog);
+  dialog.addEventListener('cancel', function () { launch.focus(); });
+  dialog.addEventListener('click', function (event) { if(event.target === dialog) { const r=dialog.getBoundingClientRect(); if(event.clientX<r.left || event.clientX>r.right || event.clientY<r.top || event.clientY>r.bottom) closeDialog(); } });
+  messageField.addEventListener('input', function () { messageField.setCustomValidity(''); status.textContent=''; });
+  document.querySelectorAll('[data-lang-select]').forEach(function (button) { button.addEventListener('click', function () { messageField.setCustomValidity(''); updateAvailability(); }); });
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    if (!WHATSAPP_PHONE) { updateAvailability(); return; }
+    const phone = normalizePhone(WHATSAPP_PHONE);
+    if (!phone) { status.textContent = text('A WhatsApp-kapcsolat jelenleg nem elérhető.','Contactul WhatsApp nu este disponibil momentan.'); return; }
+    const message = messageField.value.trim();
+    if (!message) { messageField.setCustomValidity(text('Írd be az üzeneted.','Scrie mesajul tău.')); messageField.reportValidity(); return; }
+    const name = nameField.value.trim();
+    const fullText = text('Érdeklődés a villy.ro weboldalról','Solicitare de pe site-ul villy.ro') + '\n\n' + (name ? text('Név: ','Nume: ') + name + '\n\n' : '') + message;
+    const link = document.createElement('a');
+    link.href = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(fullText);
+    link.target = '_blank'; link.rel = 'noopener noreferrer';
+    document.body.appendChild(link); link.click(); link.remove();
+    status.textContent = text('Az üzenet előkészítve. A küldést a WhatsAppban fejezd be.','Mesajul este pregătit. Finalizează trimiterea în WhatsApp.');
+  });
+  updateAvailability();
+})();
+
+setLang(document.documentElement.lang);
+</script><script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script><script src="/_vercel/insights/script.js" defer></script></body>
 </html>
