@@ -3,10 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <meta name="description" content="VILLY – producător de băuturi răcoritoare din România. Izvorul Forrás SRL, Harghita. Băuturi carbogazoase în ambalaje PET de 0,5 L, 2 L și 3 L.">
-<title>VILLY – Producător de băuturi răcoritoare România</title>
+ <meta name="description" content="VILLY üdítőitalok és Budvár Gyöngye szénsavas víz Fenyédről, az Izvorul Forrás SRL gyártásában. Ízek, PET-kiszerelések és nagykereskedelmi együttműködés.">
+  <title>VILLY – Üdítőitalgyártó Romániában | Izvorul Forrás</title>
   <link rel="canonical" href="https://www.villy.ro/">
-<meta name="robots" content="index, follow">
+  <link rel="alternate" hreflang="hu-RO" href="https://www.villy.ro/">
+  <link rel="alternate" hreflang="ro-RO" href="https://www.villy.ro/ro/">
+  <link rel="alternate" hreflang="x-default" href="https://www.villy.ro/">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="VILLY">
+  <meta property="og:locale" content="hu_HU">
+  <meta property="og:title" content="VILLY – Üdítőitalgyártó Romániában | Izvorul Forrás">
+  <meta property="og:description" content="VILLY üdítőitalok és Budvár Gyöngye szénsavas víz Fenyédről, az Izvorul Forrás SRL gyártásában. Ízek, PET-kiszerelések és nagykereskedelmi együttműködés.">
+  <meta property="og:url" content="https://www.villy.ro/">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Izvorul Forrás SRL", "url": "https://www.villy.ro/", "brand": [{"@type": "Brand", "name": "VILLY"}, {"@type": "Brand", "name": "Budvár Gyöngye"}], "address": {"@type": "PostalAddress", "streetAddress": "Strada Petőfi Sándor nr. 185", "addressLocality": "Brădești", "addressRegion": "Harghita", "addressCountry": "RO"}, "telephone": "+40756052099", "email": "izvorul_forras@yahoo.com"}</script>
   <style>
 :root { --blue:#1687d9; --blue-dark:#0a5ea8; --sky:#eaf6ff; --green:#32b36b; --text:#1f2937; --muted:#5f6b7a; --shadow:0 18px 45px rgba(7,38,73,.12); --max:1180px; }
 * { box-sizing:border-box; }
@@ -273,13 +283,13 @@ footer { padding-bottom:100px; }
       });
       document.querySelectorAll('[data-label-hu]').forEach(el => el.setAttribute('aria-label', el.getAttribute('data-label-' + lang)));
       document.querySelectorAll('img[data-alt-hu]').forEach(img => img.alt = img.getAttribute('data-alt-' + lang));
-      document.title = lang === 'ro' ? 'VILLY – Răcoritoare și apă carbogazificată Budvár Gyöngye' : 'VILLY – Üdítőitalok és Budvár Gyöngye szénsavas víz';
+      document.title = lang === 'ro' ? "VILLY – Producător de băuturi răcoritoare România" : "VILLY – Üdítőitalgyártó Romániában | Izvorul Forrás";
       const description = document.querySelector('meta[name="description"]');
-      if (description) description.content = lang === 'ro' ? 'Răcoritoare Villy și apă carbogazificată Budvár Gyöngye din Brădești. Afacere de familie din 1991. Produse, producție și colaborare.' : 'Villy üdítőitalok és Budvár Gyöngye szénsavas palackozott víz Fenyédről. Családi vállalkozás 1991 óta. Termékek, gyártás és együttműködés.';
+      if (description) description.content = lang === 'ro' ? "VILLY, producător de băuturi răcoritoare în România, Brădești, Harghita. Izvorul Forrás SRL: băuturi carbogazoase în PET și colaborări en gros." : "VILLY üdítőitalok és Budvár Gyöngye szénsavas víz Fenyédről, az Izvorul Forrás SRL gyártásában. Ízek, PET-kiszerelések és nagykereskedelmi együttműködés.";
 
     }
     langButtons.forEach(btn => {
-      btn.addEventListener('click', () => setLang(btn.dataset.langSelect));
+      btn.addEventListener('click', () => { window.location.href = btn.dataset.langSelect === 'ro' ? '/ro/' : '/'; });
     });
     setLang('hu');
 
