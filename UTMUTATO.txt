@@ -1,0 +1,11 @@
+VILLY SEO frissítés – 2026. november 22.
+
+GitHub / izvorulforras-sys/villy-main (main):
+1. A gyökérben lévő index.html tartalmát cseréld a csomag index.html fájljára.
+2. Hozz létre egy ro nevű mappát, és benne index.html fájlt a csomag ro/index.html tartalmával.
+3. Cseréld a gyökérben a sitemap.xml fájlt a csomag azonos nevű fájljára.
+4. A robots.txt maradhat a jelenlegi; a csomagban ugyanez szerepel.
+5. Ellenőrizd a https://www.villy.ro/ és https://www.villy.ro/ro/ oldalakat, a nyelvváltást, a képeket, a WhatsAppot, majd a https://www.villy.ro/sitemap.xml címet.
+6. A Search Console-ban ellenőrizd és kérd az /ro/ URL indexelését is.
+
+Figyelem: a ro/index.html képei a ../images/ könyvtárból töltődnek be. A GitHubban már létező images és api könyvtárat ne töröld.
